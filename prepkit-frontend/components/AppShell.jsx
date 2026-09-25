@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState,  useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { authApi } from "../lib/api/client";
 import Link from "next/link";
@@ -12,6 +12,14 @@ const NAV_ITEMS = [
 export default function AppShell({ active = "Dashboard", children }) {
   const router = useRouter();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [userName, setUserName] = useState("Your Account");
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setUserName(JSON.parse(user).name);
+    }
+  }, []);
 
   async function handleLogout() {
     try {
