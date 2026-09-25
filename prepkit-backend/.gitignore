@@ -1,0 +1,13 @@
+node_modules
+.env
+.env.local
+.cache-brief.json
+.cache-coverageLoop.json
+.cache-flashcards.json
+.cache-questions.json
+.cache-requirements.json
+test-cases.json
+test-coverage-gap.js
+test-generation.js
+test-kits.json
+test-retrieval.js
