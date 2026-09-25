@@ -4,9 +4,12 @@ import {useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import AppShell from "../../../../../components/AppShell";
-// import { getMockKit } from "../../../../../lib/mockKit";
-import { kitsApi } from "../../../../lib/api/kits";
-import { useRequireAuth } from "../../../../lib/hooks/useRequireAuth";
+
+// import { kitsApi } from "../../../../lib/api/kits";
+// import { useRequireAuth } from "../../../../lib/hooks/useRequireAuth";
+
+import { kitsApi } from "../../../../../lib/api/kits";
+import { useRequireAuth } from "../../../../../lib/hooks/useRequireAuth";
 
 export default function PracticeSummaryPage() {
   const { id } = useParams();
