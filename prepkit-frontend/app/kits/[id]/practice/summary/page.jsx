@@ -16,14 +16,21 @@ export default function PracticeSummaryPage() {
 
     const authed = useRequireAuth();
     const [kit, setKit] = useState(null);
+    
 
     useEffect(() => {
       if (!authed) return;
       kitsApi.get(id).then((data) => setKit(data.kit));
     }, [authed, id]);
 
+  if (!kit) {
+  return <p>Loading practice summary...</p>;
+}
+
   const covered = kit.role?.requirements.length - kit.coverage.uncovered_requirement_ids.length;
   const coveragePct = Math.round((covered / kit.role?.requirements.length) * 100);
+
+
 
   return (
     <AppShell active="Practice Mode">
