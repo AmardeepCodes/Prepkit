@@ -73,7 +73,7 @@ export default function KitBuilderPage() {
   const uncoveredIds = useMemo(() => {
     if (!kit) return [];
     const covered = new Set(kit.questions.flatMap((q) => q.requirement_ids));
-    return kit.role.requirements
+    return kit.role?.requirements
       .filter((r) => r.priority === "must" && !covered.has(r.id))
       .map((r) => r.id);
   }, [kit]);
@@ -106,7 +106,7 @@ export default function KitBuilderPage() {
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
           <div>
             <h1 className="font-headline-lg text-headline-lg text-on-surface tracking-tight">
-              {kit.source.role || "Untitled role"} · Interview Kit
+              {kit.source?.role || "Untitled role"} · Interview Kit
             </h1>
             <div className="flex items-center gap-space-xs mt-1">
               <span className="material-symbols-outlined text-[16px] text-tertiary">check_circle</span>
@@ -167,12 +167,12 @@ export default function KitBuilderPage() {
         />
       )}
       {tab === "requirements" && (
-        <RequirementsSection requirements={kit.role.requirements} uncoveredIds={uncoveredIds} />
+        <RequirementsSection requirements={kit.role?.requirements} uncoveredIds={uncoveredIds} />
       )}
       {tab === "questions" && (
         <QuestionBankSection
           questions={kit.questions}
-          requirements={kit.role.requirements}
+          requirements={kit.role?.requirements}
           onChange={(questions) => persist({ questions })}
           onRegenerateCategory={regenerateQuestionCategoryHandler}
         />

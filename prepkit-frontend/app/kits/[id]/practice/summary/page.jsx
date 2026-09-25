@@ -22,8 +22,8 @@ export default function PracticeSummaryPage() {
       kitsApi.get(id).then((data) => setKit(data.kit));
     }, [authed, id]);
 
-  const covered = kit.role.requirements.length - kit.coverage.uncovered_requirement_ids.length;
-  const coveragePct = Math.round((covered / kit.role.requirements.length) * 100);
+  const covered = kit.role?.requirements.length - kit.coverage.uncovered_requirement_ids.length;
+  const coveragePct = Math.round((covered / kit.role?.requirements.length) * 100);
 
   return (
     <AppShell active="Practice Mode">
@@ -43,7 +43,7 @@ export default function PracticeSummaryPage() {
               Requirement Coverage
             </span>
             <span className="font-headline-sm text-headline-sm text-primary">
-              {covered} / {kit.role.requirements.length}
+              {covered} / {kit.role?.requirements.length}
             </span>
           </div>
           <div className="w-full h-2 rounded-full bg-surface-container-highest overflow-hidden">
@@ -61,7 +61,7 @@ export default function PracticeSummaryPage() {
             </h2>
             <div className="flex flex-col gap-space-sm">
               {kit.coverage.uncovered_requirement_ids.map((rid) => {
-                const req = kit.role.requirements.find((r) => r.id === rid);
+                const req = kit.role?.requirements.find((r) => r.id === rid);
                 if (!req) return null;
                 return (
                   <div
