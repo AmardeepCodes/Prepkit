@@ -138,7 +138,7 @@ export default function AppShell({ active = "Dashboard", children }) {
               </div>
               <div className="hidden sm:flex flex-col text-left">
                 <span className="font-label-md text-label-md text-on-surface leading-none">
-                  Your Account
+                  {userName}
                 </span>
               </div>
               <span className="material-symbols-outlined text-outline text-[18px] hidden sm:inline">
