@@ -21,6 +21,10 @@ app.use(express.json({ limit: "1mb" }));
 
 const DB_STATE_LABEL = ["disconnected", "connected", "connecting", "disconnecting"];
 
+app.get("/", (req, res) => {
+  res.json({ status: "ok", message: "PrepKit backend is running" });
+});
+
 app.get("/health", (req, res) => {
   const state = dbState();
   res.json({
