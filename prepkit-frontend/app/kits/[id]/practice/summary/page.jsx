@@ -1,14 +1,23 @@
 "use client";
 
-import { useMemo } from "react";
+import {useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import AppShell from "../../../../../components/AppShell";
-import { getMockKit } from "../../../../../lib/mockKit";
+// import { getMockKit } from "../../../../../lib/mockKit";
+import { kitsApi } from "../../../../lib/api/kits";
+import { useRequireAuth } from "../../../../lib/hooks/useRequireAuth";
 
 export default function PracticeSummaryPage() {
   const { id } = useParams();
-  const kit = useMemo(() => getMockKit(id), [id]);
+
+    const authed = useRequireAuth();
+    const [kit, setKit] = useState(null);
+
+    useEffect(() => {
+      if (!authed) return;
+      kitsApi.get(id).then((data) => setKit(data.kit));
+    }, [authed, id]);
 
   const covered = kit.role.requirements.length - kit.coverage.uncovered_requirement_ids.length;
   const coveragePct = Math.round((covered / kit.role.requirements.length) * 100);
